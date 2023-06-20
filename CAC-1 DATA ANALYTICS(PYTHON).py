@@ -19,6 +19,7 @@ class Queue:
 
     def insert(self, name, age, gender, address, weight, height):
         details = [name, age, gender, address, weight, height]
+        #data is saved in the list
         df = pd.DataFrame([details])
         df.to_csv('new.csv', mode='a', index=False, header=False)
 
