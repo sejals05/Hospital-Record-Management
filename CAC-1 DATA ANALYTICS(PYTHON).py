@@ -6,6 +6,9 @@
 
 print("\nHello! Welcome to the Hospital Management Program.")
 import pandas as pd
+hosp_dets={'Doctors':['Dr.Rose','Dr.Ben','Dr.Jhon','Dr.Lily'],'No. of Ambulances Available':10,'No of Beds':20}
+hosp = pd.DataFrame(hosp_dets)
+hosp.to_csv('hosp.csv',mode='w',header = False,index = False)
 
 class Node:
     def __init__(self, data):
