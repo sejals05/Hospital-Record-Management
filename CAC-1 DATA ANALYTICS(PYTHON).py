@@ -20,39 +20,39 @@ class Queue:
     def insert(self, name, age, gender, address, weight, height):
         details = [name, age, gender, address, weight, height]
         #data is saved in the list
-        df = pd.DataFrame([details])
-        df.to_csv('new.csv', mode='a', index=False, header=False)
+        df = pd.DataFrame([details]) #converting list into dataframe
+        df.to_csv('new.csv', mode='a', index=False, header=False) #converting dataframe into csv file(for file storage)
 
         new_node = Node(details)
-        if self.front is None:
-            self.front = self.rear = new_node
+        if self.front is None:     #checking if the list is empty
+            self.front = self.rear = new_node     #if the list is empty the patients data is the first data
         else:
-            self.rear.next = new_node
+            self.rear.next = new_node    #else the patients detail is entered at the end of the list
             self.rear = new_node
 
     def display_names(self):
         try:
-            df = pd.read_csv('new.csv', header=None)
+            df = pd.read_csv('new.csv', header=None)   #reading the csv file
             if df.empty:
                 print("The waiting list is empty")
             else:
                 print("Waiting List:")
                 print("Name")
-                print(df[0].to_string(index = None,header = None))
-        except FileNotFoundError:
+                print(df[0].to_string(index = None,header = None))  #Converting the dataframe data into string
+        except FileNotFoundError:     #Error handling
             print("The waiting list file does not exist or is empty")
 
     def search(self, name):
         try:
             df = pd.read_csv('new.csv', header=None)
-            result = df[df[0] == name]
+            result = df[df[0] == name]    #comparing entered data with stored data
             if result.empty:
                 print("Patient not found.")
             else:
                 print("Patient details:")
-                print('Name Age Gender Address Weight Height')
-                print(result.to_string(index=False, header= False))
-        except FileNotFoundError:
+                print('Name Age Gender Address Weight Height')    #To display column headings
+                print(result.to_string(index=False, header= False))  
+        except FileNotFoundError:      #Error handling
             print("The waiting list file does not exist or is empty")
 
     def doctors(self):
